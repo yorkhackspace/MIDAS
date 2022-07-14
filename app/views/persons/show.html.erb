@@ -1,0 +1,63 @@
+<h1>MIDAS Person</h1>
+<%= link_to("List", persons_path) %>
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @person.name %>
+  </li>
+  <li>
+    <strong>Address:</strong>
+    <%= @person.address&.gsub(/\n/, ", ") %>
+  </li>
+  <li>
+    <strong>Telephone:</strong>
+    <%= @person.telephone %>
+  </li>
+  <li>
+    <strong>Email:</strong>
+    <%= @person.email %>
+  </li>
+  <li>
+    <strong>SSO Username:</strong>
+    <% if @person.sso_user.nil? %>
+      <%= link_to("Create MIDAS SSO User", new_sso_user_path(person_id: @person.id)) %>
+    <% else %>
+      <%= link_to(@person.sso_user.username, @person.sso_user) %>
+    <% end %>
+  </li>
+  <li>
+    <strong>Member:</strong>
+    <%= check_box("person", "member", disabled: true) %>
+  </li>
+  <% if @person.has_emergency_contact? %>
+    <li>
+      <strong>Emergency Contacts:</strong>
+      <ul>
+        <% @person.emergency_contacts.each do |person| %>
+          <li>
+            <%= link_to(person.name, person) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+  <% if @person.is_emergency_contact? %>
+    <li>
+      <strong>Emergency Contact For:</strong>
+      <ul>
+        <% @person.emergency_contact_fors.each do |person| %>
+          <li>
+            <%= link_to person.name, person %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Edit MIDAS Person", edit_person_path(@person) %>
+<br>
+<%= link_to "Delete MIDAS Person", person_path(@person), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"
+} %>

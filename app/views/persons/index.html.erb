@@ -1,0 +1,22 @@
+<h1>MIDAS Persons</h1>
+<%= link_to("Members only", root_path) %>
+
+<ul>
+  <% @persons.each do |person| %>
+    <li>
+      <% if person.member? %>
+        <dfn title="Member"><strong>M</strong></dfn>
+      <% end %>
+      <% if person.has_emergency_contact? %>
+        <dfn title="Has emergency contact(s)"><strong>S</strong></dfn>
+      <% end %>
+      <% if person.is_emergency_contact? %>
+        <dfn title="Is emergency contact"><strong>E</strong></dfn>
+      <% end %>
+
+      <%= link_to(person.name, person) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to("New MIDAS Person", new_person_path) %>

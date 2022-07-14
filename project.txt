@@ -1,0 +1,16 @@
+Rails IDM for the Hackspace
+
+TODO:
+x hold member personal data
+x person model
+x person could be member
+x person can be emergency contact of another person via relation
+
+member notes
+membership status
+
+x login
+user authorisation
+  admin
+  self-edit
+  ...

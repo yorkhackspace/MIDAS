@@ -1,0 +1,15 @@
+<h1>MIDAS Members</h1>
+<%= link_to("All persons", persons_path) %>
+
+<ul>
+  <% @persons.each do |person| %>
+    <li>
+      <% if person.has_emergency_contact? %>
+        <dfn title="Has emergency contact(s)"><strong>S</strong></dfn>
+      <% end %>
+      <%= link_to(person.name, person) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to("New MIDAS Person", new_person_path) %>

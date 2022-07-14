@@ -1,0 +1,9 @@
+<h1>MIDAS Login</h1>
+
+<h2><%= notice %></h2>
+
+<%= form_tag "/login" do %>
+  Username: <%= text_field_tag :username %><br>
+  Password: <%= password_field_tag :password %><br>
+  <%= submit_tag "Log In" %>
+<% end %>
