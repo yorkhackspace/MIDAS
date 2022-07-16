@@ -53,6 +53,27 @@
       </ul>
     </li>
   <% end %>
+  <li>
+    <strong>Notes:</strong>
+    <ul>
+      <% @person.notes.each do |note| %>
+        <li>
+          "<%= note.body %>" -- <%= note.noter.name %>, <%= note.created_at %>
+          <%= link_to("Edit", edit_note_path(note)) %>
+          <%= link_to("Delete", note_path(note), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          }) %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to("Create MIDAS Note",
+                    new_note_path(notable_id: @person.id,
+                                  notable_type: @person.class.name
+                                 )) %>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <%= link_to "Edit MIDAS Person", edit_person_path(@person) %>

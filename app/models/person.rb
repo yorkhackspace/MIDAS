@@ -13,6 +13,8 @@ class Person < ApplicationRecord
 
   has_one :sso_user, dependent: :destroy
 
+  has_many :notes, as: :notable
+
   def has_emergency_contact?
     !emergency_contacts.empty?
   end

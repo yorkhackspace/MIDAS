@@ -1,0 +1,17 @@
+<%= form_with model: note do |form| %>
+  <%= form.hidden_field :noter_id %>
+  <%= form.hidden_field :notable_id %>
+  <%= form.hidden_field :notable_type %>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+    <% note.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

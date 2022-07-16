@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-mb = Person.create(name: "Muriel Bagge", address: "Bagge Farmhouse, Middle of Nowhere", telephone: "555-1234", email: "muriel.bagge@funmail.com", member: true)
+mb = Person.create(name: "Muriel Bagge", address: "Bagge Farmhouse, Middle of Nowhere", telephone: "555-1234", email: "muriel.bagge@nowheremail.com", member: true)
 ctcd = Person.create(name: "Courage", telephone: "555-9876")
 EmergencyContact.create(contact: ctcd, for: mb, relation: "Dog")
 SsoUser.create(username: "muriel", password: "mur13l", person: mb)
+Note.create(noter: mb, notable: ctcd, body: "Courage is a good dog")

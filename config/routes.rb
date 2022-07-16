@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :persons
   resources :sso_users
+  resources :notes
 
   get  "/login",  to: "sessions#login"
   post "/login",  to: "sessions#create"

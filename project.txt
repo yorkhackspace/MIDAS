@@ -6,7 +6,7 @@ x person model
 x person could be member
 x person can be emergency contact of another person via relation
 
-member notes
+x member notes
 membership status
 
 x login
