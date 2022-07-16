@@ -1,0 +1,2 @@
+module OtherPagesHelper
+end

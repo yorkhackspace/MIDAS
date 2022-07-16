@@ -17,6 +17,6 @@ _   admin
 _   self-edit
 _   ...
 
-_ dashboard
+x dashboard
 
 _ training forms

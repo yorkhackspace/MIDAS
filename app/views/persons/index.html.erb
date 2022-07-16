@@ -1,5 +1,10 @@
 <h1>MIDAS Persons</h1>
-<%= link_to("Members only", root_path) %>
+<% case @filter %>
+<% when "members" %>
+  <%= link_to("All persons", persons_path) %>
+<% else %>
+  <%= link_to("Members only", persons_path(filter: :members)) %>
+<% end %>
 
 <ul>
   <% @persons.each do |person| %>

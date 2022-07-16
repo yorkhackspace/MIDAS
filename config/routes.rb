@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "persons#members"
+  root "other_pages#dashboard"
 
   resources :persons
   resources :memberships

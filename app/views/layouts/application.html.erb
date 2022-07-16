@@ -11,7 +11,11 @@
   </head>
 
   <body>
-    <%= link_to("Logout", logout_path) %>
+    <%= link_to("Home", root_path) %>
+    <% if logged_in? %>
+      <%= link_to("Logout", logout_path) %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,2 @@
+class OtherPagesController < ApplicationController
+end

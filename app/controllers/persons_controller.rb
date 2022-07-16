@@ -1,10 +1,13 @@
 class PersonsController < ApplicationController
   def index
-    @persons = Person.all.order(member: :desc)
-  end
+    @filter = params[:filter]
 
-  def members
-    @persons = Person.all.select(&:member?)
+    case @filter
+    when "members"
+      @persons = Person.all.select(&:member?)
+    else
+      @persons = Person.all.order(member: :desc)
+    end
   end
 
   def show
