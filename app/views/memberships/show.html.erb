@@ -1,0 +1,36 @@
+<h1>MIDAS Membership</h1>
+<%= link_to(@membership.person.name, @membership.person) %>
+<ul>
+  <li>
+    <strong>Status:</strong>
+    <%= human_for_membership_status(@membership.status) %>
+  </li>
+  <li>
+    <strong>Notes:</strong>
+    <ul>
+      <% @membership.notes.each do |note| %>
+        <li>
+          "<%= note.body %>" -- <%= note.noter.name %>, <%= note.created_at %>
+          <%= link_to("Edit", edit_note_path(note)) %>
+          <%= link_to("Delete", note_path(note), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          }) %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to("Create MIDAS Note",
+                    new_note_path(notable_id: @membership.id,
+                                  notable_type: @membership.class.name
+                                 )) %>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<%= link_to "Edit MIDAS Membership", edit_membership_path(@membership) %>
+<br>
+<%= link_to "Delete MIDAS Membership", membership_path(@membership), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"
+} %>

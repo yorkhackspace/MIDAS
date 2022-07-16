@@ -26,8 +26,14 @@
     <% end %>
   </li>
   <li>
-    <strong>Member:</strong>
-    <%= check_box("person", "member", disabled: true) %>
+    <strong>Membership status:</strong>
+    <% if @person.member? %>
+      <%= link_to(human_for_membership_status(@person.membership.status), @person.membership) %>
+    <% else %>
+      <%= link_to("Create MIDAS Membership", new_membership_path(
+                                                person_id: @person.id,
+                                                status: "new")) %>
+    <% end %>
   </li>
   <% if @person.has_emergency_contact? %>
     <li>

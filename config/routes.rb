@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "persons#members"
 
   resources :persons
+  resources :memberships
   resources :sso_users
   resources :notes
 

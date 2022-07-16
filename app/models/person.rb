@@ -15,11 +15,17 @@ class Person < ApplicationRecord
 
   has_many :notes, as: :notable
 
+  has_one :membership
+
   def has_emergency_contact?
     !emergency_contacts.empty?
   end
 
   def is_emergency_contact?
     !emergency_contact_fors.empty?
+  end
+
+  def member?
+    !!membership
   end
 end

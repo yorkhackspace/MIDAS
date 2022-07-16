@@ -7,10 +7,16 @@ x person could be member
 x person can be emergency contact of another person via relation
 
 x member notes
-membership status
+x membership status
+_   keys
+_   positions
 
 x login
-user authorisation
-  admin
-  self-edit
-  ...
+_ user authorisation
+_   admin
+_   self-edit
+_   ...
+
+_ dashboard
+
+_ training forms

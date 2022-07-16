@@ -1,0 +1,18 @@
+<%= form_with model: membership do |form| %>
+  <%= form.hidden_field :person_id %>
+
+  <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, options_for_select(
+      Membership.statuses.map { |status, _|
+        [human_for_membership_status(status), status]
+      }, membership.status) %>
+    <% membership.errors.full_messages_for(:status).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

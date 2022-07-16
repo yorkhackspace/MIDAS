@@ -14,7 +14,7 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = Note.new(notes_params)
+    @note = Note.new(note_params)
 
     if @note.save
       redirect_to @note.notable
@@ -30,7 +30,7 @@ class NotesController < ApplicationController
   def update
     @note = Note.find(params[:id])
 
-    if @note.update(notes_params)
+    if @note.update(note_params)
       redirect_to @note.notable
     else
       render :edit, status: :unprocessable_entity
@@ -47,7 +47,7 @@ class NotesController < ApplicationController
 
   private
   
-    def notes_params
-      params.require(:note).permit(:noter_id, :notable_id, :notable_type, :body)
-    end
+  def note_params
+    params.require(:note).permit(:noter_id, :notable_id, :notable_type, :body)
+  end
 end

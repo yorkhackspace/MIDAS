@@ -4,7 +4,7 @@ class PersonsController < ApplicationController
   end
 
   def members
-    @persons = Person.all.where(member: true)
+    @persons = Person.all.select(&:member?)
   end
 
   def show
