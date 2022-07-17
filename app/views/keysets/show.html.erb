@@ -1,0 +1,36 @@
+<h1>MIDAS Keyset</h1>
+<%= link_to("List", keysets_path) %>
+<ul>
+  <li>
+    <strong>Fob number:</strong>
+    <%= @keyset.fob_number %>
+  </li>
+  <li>
+    <strong>Notes:</strong>
+    <ul>
+      <% @keyset.notes.each do |note| %>
+        <li>
+          "<%= note.body %>" -- <%= note.noter.name %>, <%= note.created_at %>
+          <%= link_to("Edit", edit_note_path(note)) %>
+          <%= link_to("Delete", note_path(note), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          }) %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to("Create MIDAS Note",
+                    new_note_path(notable_id: @keyset.id,
+                                  notable_type: @keyset.class.name
+                                 )) %>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<%= link_to "Edit MIDAS Keyset", edit_keyset_path(@keyset) %>
+<br>
+<%= link_to "Delete MIDAS Keyset", keyset_path(@keyset), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"
+} %>

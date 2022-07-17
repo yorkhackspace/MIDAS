@@ -1,0 +1,14 @@
+<h1>MIDAS Keysets</h1>
+
+<ul>
+  <% @keysets.each do |keyset| %>
+    <li>
+      <%= link_to(keyset.fob_number, keyset) %>
+      <% unless keyset.available? %>
+        (<%= keyset.membership.person.name %>)
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to("New MIDAS Keyset", new_keyset_path) %>

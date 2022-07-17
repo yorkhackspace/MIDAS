@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :persons
   resources :memberships
   resources :sso_users
+  resources :keysets
   resources :notes
 
   get  "/login",  to: "sessions#login"

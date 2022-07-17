@@ -13,6 +13,18 @@
   </div>
 
   <div>
+    <%= form.label :keyset %><br>
+    <%= form.select :keyset_id, options_for_select(
+      [["Unassigned!", nil]] +
+      available_keysets_for(membership).map { |keyset|
+        [keyset.fob_number, keyset.id]
+      }, membership.keyset&.id) %>
+    <% membership.errors.full_messages_for(:keyset).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

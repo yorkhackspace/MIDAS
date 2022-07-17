@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_16_155451) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_16_181056) do
   create_table "emergency_contacts", force: :cascade do |t|
     t.integer "contact_id", null: false
     t.integer "for_id", null: false
@@ -21,11 +21,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_155451) do
     t.index ["for_id"], name: "index_emergency_contacts_on_for_id"
   end
 
+  create_table "keysets", force: :cascade do |t|
+    t.string "fob_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "memberships", force: :cascade do |t|
     t.integer "person_id", null: false
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "keyset_id"
+    t.index ["keyset_id"], name: "index_memberships_on_keyset_id"
     t.index ["person_id"], name: "index_memberships_on_person_id"
   end
 
@@ -60,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_155451) do
 
   add_foreign_key "emergency_contacts", "persons", column: "contact_id"
   add_foreign_key "emergency_contacts", "persons", column: "for_id"
+  add_foreign_key "memberships", "keysets"
   add_foreign_key "memberships", "persons"
   add_foreign_key "notes", "persons", column: "noter_id"
   add_foreign_key "sso_users", "persons"

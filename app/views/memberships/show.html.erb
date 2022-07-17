@@ -6,6 +6,14 @@
     <%= human_for_membership_status(@membership.status) %>
   </li>
   <li>
+    <strong>Keyset:</strong>
+    <% if @membership.keyset.nil? %>
+      <%= link_to("Assign MIDAS Keyset", edit_membership_path(@membership)) %>
+    <% else %>
+      <%= link_to(@membership.keyset.fob_number, keyset_path(@membership.keyset)) %>
+    <% end %>
+  </li>
+  <li>
     <strong>Notes:</strong>
     <ul>
       <% @membership.notes.each do |note| %>

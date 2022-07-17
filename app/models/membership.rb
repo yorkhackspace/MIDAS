@@ -12,5 +12,7 @@ class Membership < ApplicationRecord
   validates :person, presence: true
   validates :status, inclusion: { in: statuses.keys }
 
+  belongs_to :keyset, optional: true
+
   has_many :notes, as: :notable
 end

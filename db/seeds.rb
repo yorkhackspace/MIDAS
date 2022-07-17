@@ -11,4 +11,7 @@ ctcd = Person.create(name: "Courage", telephone: "555-9876")
 EmergencyContact.create(contact: ctcd, for: mb, relation: "Dog")
 SsoUser.create(username: "muriel", password: "mur13l", person: mb)
 Note.create(noter: mb, notable: ctcd, body: "Courage is a good dog")
-Membership.create(person: mb, status: :active)
+5.times do |i|
+  Keyset.create(fob_number: "100#{i+1}")
+end
+Membership.create(person: mb, status: :active, keyset: Keyset.create(fob_number: "0123"))

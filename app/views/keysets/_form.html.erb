@@ -1,0 +1,13 @@
+<%= form_with model: keyset do |form| %>
+  <div>
+    <%= form.label :fob_number %><br>
+    <%= form.text_field :fob_number %>
+    <% keyset.errors.full_messages_for(:fob_number).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
