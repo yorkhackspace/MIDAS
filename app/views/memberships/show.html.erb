@@ -1,5 +1,6 @@
 <h1>MIDAS Membership</h1>
 <%= link_to(@membership.person.name, @membership.person) %>
+
 <ul>
   <li>
     <strong>Status:</strong>
@@ -10,7 +11,7 @@
     <% if @membership.keyset.nil? %>
       <%= link_to("Assign MIDAS Keyset", edit_membership_path(@membership)) %>
     <% else %>
-      <%= link_to(@membership.keyset.fob_number, keyset_path(@membership.keyset)) %>
+      <%= link_to(@membership.keyset.fob_number, keyset_path(@membership.keyset, return: :membership)) %>
     <% end %>
   </li>
   <li>

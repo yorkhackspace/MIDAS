@@ -5,6 +5,7 @@ class KeysetsController < ApplicationController
 
   def show
     @keyset = Keyset.find(params[:id])
+    @return = params[:return]
   end
 
   def new

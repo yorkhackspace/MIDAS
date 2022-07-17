@@ -1,9 +1,21 @@
 <h1>MIDAS Keyset</h1>
-<%= link_to("List", keysets_path) %>
+<% if @return %>
+  <%= link_to("Holding membership", @keyset.membership) %>
+<% else %>
+  <%= link_to("List", keysets_path) %>
+<% end %>
 <ul>
   <li>
     <strong>Fob number:</strong>
     <%= @keyset.fob_number %>
+  </li>
+  <li>
+    <strong>Holder:</strong>
+    <% if @keyset.membership.nil? %>
+      None (available)
+    <% else %>
+      <%= link_to(@keyset.membership.person.name, @keyset.membership) %>
+    <% end %>
   </li>
   <li>
     <strong>Notes:</strong>
