@@ -1,0 +1,11 @@
+<h1>MIDAS SSO User Authorisations</h1>
+
+<ul>
+  <% @sso_user_authorisations.each do |sso_user_authorisation| %>
+    <li>
+      <%= link_to(sso_user_authorisation.slug, sso_user_authorisation) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to("New MIDAS SSO User Authorisation", new_sso_user_authorisation_path) %>

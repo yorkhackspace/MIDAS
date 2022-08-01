@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_16_181056) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_01_212354) do
   create_table "emergency_contacts", force: :cascade do |t|
     t.integer "contact_id", null: false
     t.integer "for_id", null: false
@@ -55,6 +55,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_181056) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sso_user_authorisations", force: :cascade do |t|
+    t.string "slug"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sso_user_authorisations_users", id: false, force: :cascade do |t|
+    t.integer "sso_user_id", null: false
+    t.integer "sso_user_authorisation_id", null: false
+    t.index ["sso_user_authorisation_id"], name: "index_sso_user_authorisations_users_on_sso_user_authorisation_id"
+    t.index ["sso_user_id"], name: "index_sso_user_authorisations_users_on_sso_user_id"
   end
 
   create_table "sso_users", force: :cascade do |t|

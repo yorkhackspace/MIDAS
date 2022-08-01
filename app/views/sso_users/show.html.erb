@@ -6,6 +6,20 @@
     <strong>Username:</strong>
     <%= @sso_user.username %>
   </li>
+  <li>
+    <strong>Authorisations:</strong>
+    <% if @sso_user.sso_user_authorisations.empty? %>
+      None
+    <% else %>
+      <ul>
+        <% @sso_user.sso_user_authorisations.each do |auth| %>
+          <li>
+            <%= auth.description %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </li>
 </ul>
 
 <%= link_to "Edit MIDAS SSO User", edit_sso_user_path(@sso_user) %>

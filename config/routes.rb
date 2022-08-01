@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   resources :persons
   resources :memberships
   resources :sso_users
+  resources :sso_user_authorisations
   resources :keysets
   resources :notes
+
+  get "/admin", to: "other_pages#admin"
 
   get  "/login",  to: "sessions#login"
   post "/login",  to: "sessions#create"

@@ -21,6 +21,16 @@ class SsoUsersController < ApplicationController
     @sso_user = SsoUser.find(params[:id])
   end
 
+  def update
+    @sso_user = SsoUser.find(params[:id])
+
+    if @sso_user.update(sso_user_params)
+      redirect_to @sso_user
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @sso_user = SsoUser.find(params[:id])
 
@@ -37,6 +47,6 @@ class SsoUsersController < ApplicationController
   private
 
   def sso_user_params
-    params.require(:sso_user).permit(:username, :password, :person_id)
+    params.require(:sso_user).permit(:username, :password, :person_id, sso_user_authorisation_ids: [])
   end
 end

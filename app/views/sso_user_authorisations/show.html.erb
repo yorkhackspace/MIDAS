@@ -1,0 +1,55 @@
+<h1>MIDAS SSO User Authorisation</h1>
+<%= link_to("List", sso_user_authorisations_path) %>
+
+<ul>
+  <li>
+    <strong>Slug:</strong>
+    <%= @sso_user_authorisation.slug %>
+  </li>
+  <li>
+    <strong>Description:</strong>
+    <%= @sso_user_authorisation.description %>
+  </li>
+  <li>
+    <strong>SSO Users with this Authorisation:</strong>
+    <% if @sso_user_authorisation.sso_users.empty? %>
+      None
+    <% else %>
+      <ul>
+        <% @sso_user_authorisation.sso_users.each do |sso_user| %>
+          <li>
+            <%= link_to(sso_user.username, sso_user) %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </li>
+  <li>
+    <strong>Notes:</strong>
+    <ul>
+      <% @sso_user_authorisation.notes.each do |note| %>
+        <li>
+          "<%= note.body %>" -- <%= note.noter.name %>, <%= note.created_at %>
+          <%= link_to("Edit", edit_note_path(note)) %>
+          <%= link_to("Delete", note_path(note), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          }) %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to("Create MIDAS Note",
+                    new_note_path(notable_id: @sso_user_authorisation.id,
+                                  notable_type: @sso_user_authorisation.class.name
+                                 )) %>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<%= link_to "Edit MIDAS SSO User Authorisation", edit_sso_user_authorisation_path(@sso_user_authorisation) %>
+<br>
+<%= link_to "Delete MIDAS SSO User Authorisation", sso_user_authorisation_path(@sso_user_authorisation), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"
+} %>

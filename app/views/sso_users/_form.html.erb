@@ -18,6 +18,20 @@
   </div>
 
   <div>
+    <%= form.label :sso_user_authorisations %><br>
+    <%= form.select :sso_user_authorisation_ids,
+      options_for_select(
+        auths_hash,
+        sso_user.sso_user_authorisations.map { |auth| auth.id }
+      ),
+      {include_blank: false}, multiple: true
+    %>
+    <% sso_user.errors.full_messages_for(:sso_user_authorisations).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

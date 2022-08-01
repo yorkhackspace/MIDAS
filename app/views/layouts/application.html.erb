@@ -13,6 +13,9 @@
   <body>
     <%= link_to("Home", root_path) %>
     <% if logged_in? %>
+      <% if is_midas_admin? %>
+        <%= link_to("Admin", admin_path) %>
+      <% end %>
       <%= link_to("Logout", logout_path) %>
     <% end %>
 

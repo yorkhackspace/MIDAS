@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  include SessionsHelper
   skip_before_action :check_logged_in, only: [:login, :create]
+  skip_before_action :check_midas_admin
 
   def login
     if logged_in?
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   def create
     @sso_user = SsoUser.find_by(username: params[:username])
 
-    if !!@sso_user && @sso_user.authenticate(params[:password])
+    if !!@sso_user && @sso_user.authenticate(params[:password]) && is_midas_user?(@sso_user)
       session[:sso_user_id] = @sso_user.id
       redirect_to root_path
     else

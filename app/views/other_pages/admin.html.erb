@@ -1,0 +1,24 @@
+<h1>MIDAS Admin</h1>
+
+<ul>
+  <li>
+    Persons
+    <ul>
+      <li>
+        <%= link_to("All", persons_path) %>
+      </li>
+      <li>
+        <%= link_to("Members", persons_path(filter: :members)) %>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <%= link_to("SSO User Authorisations", sso_user_authorisations_path) %>
+  </li>
+  <li>
+    Trustees
+  </li>
+  <li>
+    <%= link_to("Keysets", keysets_path) %>
+  </li>
+</ul>
