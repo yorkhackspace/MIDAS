@@ -12,8 +12,8 @@ x   keys
 _   positions
 
 x login
-_ user authorisation
-_   admin
+x user authorisation
+x   admin
 _   self-edit
 _   ...
 
@@ -21,6 +21,8 @@ x keysets
 
 x dashboard
 
-_ better breadcrumbs
+_ better UIX
 
 _ training forms
+
+_ subs tracking

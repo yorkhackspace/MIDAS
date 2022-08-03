@@ -9,6 +9,7 @@
       </li>
       <li>
         <%= link_to("Members", persons_path(filter: :members)) %>
+        (<%= Person.all.select(&:member?).count %>)
       </li>
     </ul>
   </li>
