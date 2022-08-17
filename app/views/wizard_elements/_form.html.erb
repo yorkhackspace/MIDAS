@@ -1,0 +1,36 @@
+<%= form_with model: wizard_element do |form| %>
+  <%= form.hidden_field :wizard_id %>
+
+  <div>
+    <%= form.label :text %><br>
+    <%= form.text_area :text %>
+    <% wizard_element.errors.full_messages_for(:text).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :question %><br>
+    <%= form.check_box :question %>
+    <% wizard_element.errors.full_messages_for(:question).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :order %><br>
+    <% if wizard_element.order.nil? %>
+      <% next_value = (wizard_element.wizard.wizard_elements.map(&:order).max || 0) + 10 %>
+      <%= form.number_field :order, value: next_value %>
+    <% else %>
+      <%= form.number_field :order %>
+    <% end %>
+    <% wizard_element.errors.full_messages_for(:order).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

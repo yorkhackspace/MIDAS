@@ -2,3 +2,20 @@
 <h2>The Member Information Database and Authorisation Suite.</h2>
 
 TODO: User Dashboard
+
+<div>
+  <h3>Complete a wizard</h3>
+  <% if Wizard.all.none? { |wizard| current_user_can(wizard.sso_user_authorisation) } %>
+    You can't complete any wizards.
+  <% else %>
+    <ul>
+      <% Wizard.all.each do |wizard| %>
+        <% if current_user_can(wizard.sso_user_authorisation) %>
+          <li>
+            <%= link_to(wizard.name, new_wizard_completion_path(wizard_id: wizard.id)) %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

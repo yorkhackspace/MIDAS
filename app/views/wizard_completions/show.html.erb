@@ -1,0 +1,48 @@
+<h1>MIDAS Wizard Completion</h1>
+<%= link_to(@wizard_completion.signee.name, @wizard_completion.signee) %>
+<ul>
+  <li>
+    <strong>Wizard:</strong>
+    <%= @wizard_completion.wizard.name %>
+  </li>
+  <li>
+    <strong>Signer:</strong>
+    <%= @wizard_completion.signer.name %>
+  </li>
+  <li>
+    <strong>Signee:</strong>
+    <%= @wizard_completion.signee.name %>
+  </li>
+  <li>
+    <strong>Needs review:</strong>
+    <%= @wizard_completion.needs_review? ? "Yes!": "No" %>
+  </li>
+  <li>
+    <strong>Notes:</strong>
+    <ul>
+      <% @wizard_completion.notes.each do |note| %>
+        <li>
+          "<%= note.body %>" -- <%= note.noter.name %>, <%= note.created_at %>
+          <%= link_to("Edit", edit_note_path(note)) %>
+          <%= link_to("Delete", note_path(note), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          }) %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to("Create MIDAS Note",
+                    new_note_path(notable_id: @wizard_completion.id,
+                                  notable_type: @wizard_completion.class.name
+                                 )) %>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<%= link_to "Edit MIDAS Wizard Completion", edit_wizard_completion_path(@wizard_completion) %>
+<br>
+<%= link_to "Delete MIDAS Wizard Completion", wizard_completion_path(@wizard_completion), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"
+} %>

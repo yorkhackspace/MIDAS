@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  signer: one
+  signee: one
+  wizard: one
+  needs_review: false
+
+two:
+  signer: two
+  signee: two
+  wizard: two
+  needs_review: false

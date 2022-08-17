@@ -23,6 +23,6 @@ x dashboard
 
 _ better UIX
 
-_ training forms
+x training forms
 
 _ subs tracking

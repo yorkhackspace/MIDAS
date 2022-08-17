@@ -1,0 +1,63 @@
+<h1>MIDAS Wizard</h1>
+<%= link_to("List", wizards_path) %>
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @wizard.name %>
+  </li>
+  <li>
+    <strong>Description:</strong>
+    <%= @wizard.description %>
+  </li>
+  <li>
+    <strong>SSO User Authorisation:</strong>
+    <%= @wizard.sso_user_authorisation.description %>
+  </li>
+  <li>
+    <ol>
+      <% @wizard.wizard_elements.order(order: :asc).each do |el| %>
+        <li value="<%= el.order %>">
+          <strong><%= link_to(el.question? ? "Question" : "Text", edit_wizard_element_path(el)) %>:</strong>
+          <%= el.text %>
+        </li>
+      <% end %>
+      <% next_order = (@wizard.wizard_elements.map(&:order).max || 0) + 10 %>
+      <li value="<%= next_order %>">
+        <%= link_to("New MIDAS Wizard Element", new_wizard_element_path(wizard_id: @wizard.id)) %>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <strong>Notes:</strong>
+    <ul>
+      <% @wizard.notes.each do |note| %>
+        <li>
+          "<%= note.body %>" -- <%= note.noter.name %>, <%= note.created_at %>
+          <%= link_to("Edit", edit_note_path(note)) %>
+          <%= link_to("Delete", note_path(note), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          }) %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to("Create MIDAS Note",
+                    new_note_path(notable_id: @wizard.id,
+                                  notable_type: @wizard.class.name
+                                 )) %>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<%= link_to "Edit MIDAS Wizard", edit_wizard_path(@wizard) %>
+<br>
+<%= link_to "Delete MIDAS Wizard", wizard_path(@wizard), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"
+} %>
+<br>
+<%= link_to "Mark all completions for review!", "/review_all_completions/#{@wizard.id}", data: {
+  turbo_method: :post,
+  turbo_confirm: "Are you sure?"
+} %>

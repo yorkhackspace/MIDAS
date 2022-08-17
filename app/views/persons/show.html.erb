@@ -35,6 +35,18 @@
                                                 status: "new")) %>
     <% end %>
   </li>
+  <% unless @person.completed_wizards.empty? %>
+    <li>
+      <strong>Completed wizards:</strong>
+      <ul>
+        <% @person.completed_wizards.each do |wizard_completion| %>
+          <li>
+            <%= link_to(wizard_completion.wizard.name, wizard_completion) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
   <% if @person.has_emergency_contact? %>
     <li>
       <strong>Emergency Contacts:</strong>

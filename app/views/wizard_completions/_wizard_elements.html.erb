@@ -1,0 +1,23 @@
+<table>
+  <% if checks %>
+    <th></th>
+    <th>Signer</th>
+    <th>Signee</th>
+  <% end %>
+
+  <% wizard.wizard_elements.order(order: :asc).each do |el| %>
+    <tr>
+      <% if el.question? %>
+        <% if checks %>
+          <td><%= el.text %></td>
+          <td><%= check_box_tag "wizard_element_#{el.id}_signer" %></td>
+          <td><%= check_box_tag "wizard_element_#{el.id}_signer" %></td>
+        <% else %>
+          <td colspan="3"><%= el.text %></td>
+        <% end %>
+      <% else %>
+        <td colspan="3"><%= el.text %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

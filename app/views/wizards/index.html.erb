@@ -1,0 +1,13 @@
+<h1>MIDAS Wizards</h1>
+<%= link_to("All wizards", wizards_path) %>
+
+<ul>
+  <% @wizards.each do |wizard| %>
+    <li>
+      <%= link_to(wizard.name, wizard) %>:
+      <%= wizard.description %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to("New MIDAS Wizard", new_wizard_path) %>

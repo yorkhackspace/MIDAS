@@ -1,0 +1,40 @@
+<%= form_with model: wizard_completion do |form| %>
+  <%= form.hidden_field :wizard_id %>
+  <%= form.hidden_field :signer_id %>
+
+  <% if wizard_completion.signee.nil? %>
+    <div>
+      <%= form.label :signee %><br>
+      <%= form.select :signee_id,
+        options_for_select(
+          persons_who_havent_completed(wizard_completion.wizard).map { |person|
+            [person.name, person.id]
+          }
+        ), {include_blank: true}
+      %>
+      <% wizard_completion.errors.full_messages_for(:name).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <%= form.hidden_field :needs_review, value: false %>
+
+    <%= render "wizard_elements", wizard: wizard_completion.wizard, checks: true %>
+  <% else %>
+    <%= form.hidden_field :signee_id %>
+
+    <div>
+      <%= form.label :needs_review %><br>
+      <%= form.check_box :needs_review %>
+      <% wizard_completion.errors.full_messages_for(:needs_review).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <%= render "wizard_elements", wizard: wizard_completion.wizard, checks: false %>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

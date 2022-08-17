@@ -15,6 +15,8 @@ class Person < ApplicationRecord
 
   has_many :notes, as: :notable
 
+  has_many :completed_wizards, class_name: "WizardCompletion", foreign_key: :signee_id
+
   has_one :membership
 
   def has_emergency_contact?

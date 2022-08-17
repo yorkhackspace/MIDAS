@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wizard: one
+  text: MyText
+  question: false
+  order: 1
+
+two:
+  wizard: two
+  text: MyText
+  question: false
+  order: 1
