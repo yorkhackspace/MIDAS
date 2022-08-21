@@ -13,7 +13,7 @@ class Person < ApplicationRecord
 
   has_one :sso_user, dependent: :destroy
 
-  has_many :notes, as: :notable
+  has_many :notes, as: :notable, dependent: :destroy
 
   has_many :completed_wizards, class_name: "WizardCompletion", foreign_key: :signee_id
 

@@ -1,7 +1,7 @@
 class Keyset < ApplicationRecord
   has_one :membership
 
-  has_many :notes, as: :notable
+  has_many :notes, as: :notable, dependent: :destroy
 
   scope :available, -> { includes(:membership).where(membership: { keyset: nil }) }
 

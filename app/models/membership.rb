@@ -14,5 +14,5 @@ class Membership < ApplicationRecord
 
   belongs_to :keyset, optional: true
 
-  has_many :notes, as: :notable
+  has_many :notes, as: :notable, dependent: :destroy
 end
